@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+    <h2 class="my-4">Blog Posts</h2>
+
+    <a href="{% url 'create_blog' %}" class="btn btn-primary mb-4"
+        >Create New Blog</a
+    >
+
+    <ul class="list-group">
+        {% for blog in data %}
+        <li class="list-group-item d-flex justify-content-between">
+            <div>
+                <h5>{{ blog.title }}</h5>
+                <p>{{ blog.content|slice:":200" }}...</p>
+            </div>
+            <div>
+                <a href="{% url 'delete_blog' blog.id %}" class="btn btn-danger"
+                    >Delete</a
+                >
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
